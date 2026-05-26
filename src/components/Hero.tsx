@@ -48,7 +48,7 @@ export default function Hero() {
 
           {/* Hero visual representation */}
           <div className="relative mx-auto w-full max-w-sm lg:max-w-md">
-            <div className="relative rounded-[3rem] border-[12px] border-neutral-900 bg-neutral-950 p-[2px] shadow-[0_0_50px_rgba(0,0,0,0.5)] h-[700px] overflow-hidden ring-1 ring-neutral-800 translate-y-6 lg:translate-y-0">
+            <div className="relative rounded-[3rem] border-[12px] border-neutral-900 bg-neutral-950 p-[2px] shadow-[0_0_50px_rgba(0,0,0,0.5)] h-[540px] sm:h-[650px] lg:h-[700px] overflow-hidden ring-1 ring-neutral-800 translate-y-6 lg:translate-y-0">
                {/* Mobile Notch */}
                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-neutral-900 rounded-b-3xl z-20 drop-shadow-md" />
 
@@ -59,8 +59,8 @@ export default function Hero() {
                  <div className="absolute w-64 h-64 bg-rose-600/20 rounded-full blur-3xl bottom-20 -right-10 animate-pulse" style={{ animationDelay: '1s' }}></div>
                  
                  {/* Big Animated S Logo */}
-                 <div className="relative z-10 w-40 h-40 rounded-full bg-gradient-to-br from-indigo-500 to-rose-500 flex items-center justify-center animate-bounce shadow-[0_0_80px_rgba(99,102,241,0.5)]">
-                     <span className="text-white font-black text-8xl tracking-tighter drop-shadow-2xl">S</span>
+                 <div className="relative z-10 w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-gradient-to-br from-indigo-500 to-rose-500 flex items-center justify-center animate-bounce shadow-[0_0_80px_rgba(99,102,241,0.5)]">
+                     <span className="text-white font-black text-6xl sm:text-7xl lg:text-8xl tracking-tighter drop-shadow-2xl">S</span>
                  </div>
                </div>
                

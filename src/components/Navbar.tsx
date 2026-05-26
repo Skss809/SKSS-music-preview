@@ -80,7 +80,7 @@ export default function Navbar() {
       {/* Login Modal */}
       {showLogin && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="bg-neutral-900 border border-neutral-800 p-8 rounded-2xl w-full max-w-md relative shadow-2xl">
+          <div className="bg-neutral-900 border border-neutral-800 p-6 sm:p-8 rounded-2xl w-full max-w-md relative shadow-2xl">
             <button 
               onClick={() => setShowLogin(false)}
               className="absolute top-4 right-4 text-neutral-400 hover:text-white"

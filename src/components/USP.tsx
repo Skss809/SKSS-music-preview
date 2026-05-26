@@ -60,7 +60,7 @@ export default function USP() {
         </div>
 
         {/* Sneak peek gallery mockup */}
-        <div className="mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
+        <div className="mt-24 flex gap-6 overflow-x-auto pb-6 scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent snap-x snap-mandatory lg:grid lg:grid-cols-4 lg:overflow-x-visible lg:pb-0">
           {[
              "/Preview 1.jpg",
              "/Preview 2.jpg",
@@ -73,7 +73,7 @@ export default function USP() {
              <div 
                key={i} 
                onClick={() => setSelectedImage(src)}
-               className="cursor-pointer aspect-[1/2] rounded-2xl overflow-hidden border border-neutral-800 relative group max-w-sm mx-auto w-full shadow-lg"
+               className="cursor-pointer aspect-[1/2] rounded-2xl overflow-hidden border border-neutral-800 relative group min-w-[260px] sm:min-w-[300px] lg:min-w-0 max-w-sm mx-auto w-full shadow-lg snap-center shrink-0"
              >
                 <div className="absolute inset-0 bg-neutral-900 animate-pulse -z-10" />
                 <img src={src} alt={`App UI Preview ${i + 1}`} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" />

@@ -51,7 +51,7 @@ export default function Feedback() {
     <section className="py-24 bg-neutral-900 border-t border-neutral-800">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="bg-neutral-950 border border-neutral-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+        <div className="bg-neutral-950 border border-neutral-800 rounded-3xl p-5 sm:p-10 lg:p-12 shadow-2xl">
           <div className="mb-8">
             <h2 className="text-3xl font-display font-bold text-white mb-2 tracking-tight">Got Feedback?</h2>
             <p className="text-neutral-400">
@@ -60,7 +60,7 @@ export default function Feedback() {
           </div>
 
           {!user ? (
-            <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 text-center">
+            <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 sm:p-8 text-center">
               <LogIn className="w-10 h-10 text-neutral-500 mx-auto mb-4" />
               <p className="text-neutral-300 font-medium mb-2">Please login to submit feedback</p>
               <p className="text-sm text-neutral-500">Your feedback is tied to your account so we can follow up if needed.</p>
