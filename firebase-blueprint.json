@@ -1,0 +1,22 @@
+{
+  "entities": {
+    "Feedback": {
+      "title": "Feedback",
+      "description": "User feedback submission",
+      "type": "object",
+      "properties": {
+        "text": { "type": "string", "description": "The feedback text" },
+        "userId": { "type": "string", "description": "The UID of the user who submitted" },
+        "userEmail": { "type": "string", "description": "The email of the user" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["text", "userId", "userEmail", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/feedback/{feedbackId}": {
+      "schema": { "$ref": "#/entities/Feedback" },
+      "description": "Feedback forms submitted by users"
+    }
+  }
+}

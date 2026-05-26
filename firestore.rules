@@ -1,0 +1,34 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+    
+    function existing() { return resource.data; }
+    function incoming() { return request.resource.data; }
+    
+    function isValidFeedback(data) {
+      return data.keys().hasAll(['text', 'userId', 'userEmail', 'createdAt']) && 
+             data.keys().size() == 4 &&
+             data.text is string && data.text.size() > 0 && data.text.size() <= 2000 &&
+             data.userId is string && data.userId.size() <= 128 && data.userId == request.auth.uid &&
+             data.userEmail is string && data.userEmail.size() <= 256 &&
+             data.createdAt is string;
+    }
+    
+    match /feedback/{feedbackId} {
+      allow create: if isSignedIn() && isValidId(feedbackId) && isValidFeedback(incoming());
+      allow read: if isSignedIn() && existing().userId == request.auth.uid;
+      allow update, delete: if false; // Immutable once submitted
+    }
+  }
+}

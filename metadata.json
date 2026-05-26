@@ -1,0 +1,6 @@
+{
+  "name": "SKSS Music App Website",
+  "description": "A promotional website for the SKSS Music app with Firebase authentication and feedback submission.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
