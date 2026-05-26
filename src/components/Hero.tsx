@@ -31,7 +31,7 @@ export default function Hero() {
             
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <a 
-                href="https://drive.google.com/file/d/1B0gBi8HWzFx31lQx9ILVS-XVCU7e4oPF/view?usp=drivesdk" 
+                href="https://drive.google.com/file/d/1CCIqhLCA3Z30IbrKyTuc7EAQraHBKp0Z/view?usp=drivesdk" 
                 target="_blank" 
                 rel="noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-neutral-200 transition-colors"
