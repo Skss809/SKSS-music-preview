@@ -83,7 +83,7 @@ export default function Hero() {
                       </div>
                       <div className="flex-1">
                         <div className="text-white font-semibold text-sm mb-1 truncate">Playing Now</div>
-                        <div className="text-white/60 text-xs mb-3 truncate">Nagato Theme</div>
+                        <div className="text-white/60 text-xs mb-3 truncate">Your daily vibe</div>
                         <div className="h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
                            <div className="h-full w-1/3 bg-indigo-500 rounded-full"></div>
                         </div>
