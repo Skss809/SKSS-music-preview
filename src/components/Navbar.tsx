@@ -4,12 +4,14 @@ import { Music, LogOut, ChevronDown } from 'lucide-react';
 import { auth } from '../lib/firebase';
 
 export default function Navbar() {
-  const { user, loading, signInWithGoogle, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } = useAuth();
+  const { user, loading, error: hookError, signInWithGoogle, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } = useAuth();
   const [showLogin, setShowLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegister, setIsRegister] = useState(false);
   const [authError, setAuthError] = useState('');
+
+  const displayError = authError || hookError;
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,9 +94,9 @@ export default function Navbar() {
               {isRegister ? 'Create Account' : 'Welcome Back'}
             </h2>
 
-            {authError && (
+            {displayError && (
               <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-200 text-sm">
-                {authError}
+                {displayError}
               </div>
             )}
 
