@@ -62,13 +62,15 @@ export default function USP() {
         {/* Sneak peek gallery mockup */}
         <div className="mt-24 flex gap-6 overflow-x-auto pb-6 scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent snap-x snap-mandatory lg:grid lg:grid-cols-4 lg:overflow-x-visible lg:pb-0">
           {[
-             "/Preview 1.jpg",
-             "/Preview 2.jpg",
-             "/Preview 3.jpg",
-             "/Preview 4.jpg",
-             "/Preview 5.jpg",
-             "/Preview 6.jpg",
-             "/Preview 7.jpg"
+             "/Preview home.png",
+             "/Preview search.png",
+             "/Preview Library.png",
+             "/Preview Notes.png",
+             "/Preview settings 1.png",
+             "/Preview settings 2.png",
+             "/Preview Personalization 1.png",
+             "/Preview Personalization 2.png",
+             "/Preview Personalization 3.png"
           ].map((src, i) => (
              <div 
                key={i} 
