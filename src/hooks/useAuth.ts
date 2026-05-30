@@ -8,7 +8,9 @@ import {
   getRedirectResult,
   signOut as firebaseSignOut, 
   createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword 
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence
 } from 'firebase/auth';
 import { auth } from '../lib/firebase';
 
@@ -18,20 +20,29 @@ export function useAuth() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Ensure local persistence is set
+    setPersistence(auth, browserLocalPersistence).catch(err => {
+      console.warn("Could not set persistence", err);
+    });
+
     // Check for redirect result on mount
+    console.log("Checking for redirect result...");
     getRedirectResult(auth)
       .then((result) => {
         if (result?.user) {
-          console.log("Successfully signed in via redirect");
+          console.log("Successfully signed in via redirect:", result.user.email);
           setUser(result.user);
+        } else {
+          console.log("No redirect result found");
         }
       })
       .catch((err) => {
         console.error("Redirect sign in error", err);
-        setError(err.message);
+        setError(`Redirect error: ${err.message}`);
       });
 
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      console.log("Auth state changed:", firebaseUser ? "User found" : "No user");
       setUser(firebaseUser);
       setLoading(false);
     });
@@ -40,15 +51,32 @@ export function useAuth() {
 
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
+    // Hint for mobile browsers
+    provider.setCustomParameters({ prompt: 'select_account' });
+    
     setError(null);
     try {
-      // Use popup first, but the app is now prepared to handle redirect results too
-      await signInWithPopup(auth, provider);
+      // Use redirect on mobile for better reliability, popup on desktop
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      console.log("Starting Google Auth. Mobile mode:", isMobile);
+      
+      if (isMobile) {
+        await signInWithRedirect(auth, provider);
+      } else {
+        try {
+          await signInWithPopup(auth, provider);
+        } catch (err: any) {
+          if (err.code === 'auth/popup-blocked') {
+            console.log("Popup blocked, falling back to redirect...");
+            await signInWithRedirect(auth, provider);
+          } else {
+            throw err;
+          }
+        }
+      }
     } catch (err: any) {
       console.error("Google sign in error", err);
-      if (err.code === 'auth/popup-blocked') {
-        setError('Popup was blocked by your browser. Please allow popups or try again.');
-      } else if (err.code === 'auth/popup-closed-by-user') {
+      if (err.code === 'auth/popup-closed-by-user') {
         // User closed the popup, don't show as a scary error
       } else {
         setError(err.message);
